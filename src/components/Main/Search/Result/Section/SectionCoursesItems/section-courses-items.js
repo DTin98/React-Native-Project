@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import SectionItems from './SectionCoursesItem/section-items';
-
+import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native';
+import SectionItem from '../SectionItem/section-item'
 
 export default function SectionCourses(props) {
     const courses = [
@@ -46,44 +45,18 @@ export default function SectionCourses(props) {
             vote: 125
         },
     ];
-
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.sectionName}>{props.sectionName}</Text>
-                <Text style={styles.seeAllButton}>See all ></Text>
-            </View>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.sectionCourses}>
-                {courses.map(item => <SectionItems item={item} />)}
-            </ScrollView>
+            <SectionItem section='courses' item={courses[0]}/>
+            <SectionItem section='courses' item={courses[1]}/>
+            <SectionItem section='courses' item={courses[2]}/>
+            <SectionItem section='courses' item={courses[3]}/>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
-        marginBottom: 10
     },
-    sectionCourses: {
-        height: 155,
-    },
-    sectionName: {
-        marginLeft: 10,
-        fontWeight: 'bold',
-        fontSize: 18,
-        color: 'black'
-    },
-    seeAllButton:{
-        marginRight: 8,
-        fontSize: 13,
-        fontWeight: 'bold',
-        fontStyle: "italic",
-        color: 'lightslategrey',
-    },
-    header:{
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-        
-    }
+
 });

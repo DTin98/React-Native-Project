@@ -1,20 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
+
+const ICON_SIZE = 8;
 
 export default function SectionItems(props) {
     const renderStar = (num_start) => {
         let stars = [];
         for (let i = 0; i < num_start; i++) {
-            stars.push(<View style={styles.star}><Icon name="star" color="yellow" size={8} /></View>);
+            stars.push(<View style={styles.star}><Icon name="star" color="orange" size={ICON_SIZE} /></View>);
         }
         return stars.map(star => star);
     };
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../../../../../assets/course.png')} />
+            <Text style={styles.title}>{props.item.title}</Text>
             <View style={styles.info}>
-                <Text style={styles.text, { color: 'black', fontWeight: 'bold' }}>{props.item.title}</Text>
                 <Text style={styles.text}>{props.item.author}</Text>
                 <Text style={styles.text}>{props.item.level} . {props.item.release} . {props.item.duration}</Text>
                 <View style={styles.rating}>
@@ -28,19 +29,15 @@ export default function SectionItems(props) {
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 12,
-        width: 170,
-        backgroundColor: 'lightgray',
-        overflow: 'hidden',
-        borderRadius: 8,
     },
-    image: {
-        height: '50%',
-        width: '100%'
+    title: {
+        marginLeft: 6,
+        fontSize: 12,
+        color: 'black',
+        fontWeight: 'bold'
     },
     info: {
         margin: 6,
-        alignContent: "space-between"
     },
     text: {
         color: 'dimgray',
