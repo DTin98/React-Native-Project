@@ -1,24 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import SectionItem from '../SectionItem/section-item'
+import { StyleSheet, View } from 'react-native';
+import Data from '../../../../../global/Data/index';
+import ListItems from '../../../../../global/ListItems/index';
 
 export default function SectionCourses(props) {
-    const paths = [
-        {
-            id: 1,
-            title: 'React Native',
-            number_of_courses: 12
-        },
-        {
-            id: 2,
-            title: 'IOS',
-            number_of_courses: 24
-        }
-    ]
+    const paths = Data.paths;
     return (
         <View style={styles.container}>
-            <SectionItem section='path' item={paths[0]} />
-            <SectionItem section='path' item={paths[1]} />
+            <ListItems section='path' items={paths}/>
         </View>
     );
 }

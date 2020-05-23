@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import SectionCourses from './SectionCourses/section-courses';
 
-export default function Home() {
+export default (props) => {
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <SectionCourses sectionName="Continue learning" />
-                <SectionCourses sectionName="Path" />
-                <SectionCourses sectionName="Channel" />
-                <SectionCourses sectionName="Bookmarks" />
+                <SectionCourses {...props} sectionName="Continue learning" />
+                <SectionCourses {...props} sectionName="Path" />
+                <SectionCourses {...props} sectionName="Channel" />
+                <SectionCourses {...props} sectionName="Bookmarks" />
             </ScrollView>
         </View>
     );
@@ -17,7 +17,5 @@ export default function Home() {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 10,
-        marginTop: 30,
     },
 });

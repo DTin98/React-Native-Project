@@ -1,28 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import InfoCoursesItem from '../../../../global/InfoCouresesItem/info-courses-item'
+import { Image, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import InfoCoursesItem from '../../../../global/ListItems/SectionItem/InfoCouresesItem/info-courses-item';
 
 export default function SectionItems(props) {
-    const renderStar = (num_start) => {
-        let stars = [];
-        for (let i = 0; i < num_start; i++) {
-            stars.push(<View style={styles.star}><Icon name="star" color="yellow" size={8} /></View>);
-        }
-        return stars.map(star => star);
-    };
     return (
-        <View style={styles.container}>
+        <TouchableWithoutFeedback style={styles.container} onPress={() => props.navigation.navigate('CourseDetail')}>
             <Image style={styles.image} source={require('../../../../../../assets/course.png')} />
-            <InfoCoursesItem item={props.item}/>
-        </View>
+            <InfoCoursesItem item={props.item} />
+        </TouchableWithoutFeedback>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        height: '100%',
         marginLeft: 12,
         width: 170,
-        backgroundColor: 'lightgray',
+        backgroundColor: '#dfe6e9',
         overflow: 'hidden',
         borderRadius: 8,
         justifyContent: 'space-between'

@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import InfoCoursesItem from '../../../../../global/InfoCouresesItem/info-courses-item'
-import InfoPathItem from '../../../../../global/InfoPathItem/info-path-item'
-import InfoAuthorItem from '../../../../../global/InfoAuthorItem/info-author-item'
+import InfoCoursesItem from './InfoCouresesItem/info-courses-item'
+import InfoPathItem from './InfoPathItem/info-path-item'
+import InfoAuthorItem from './InfoAuthorItem/info-author-item'
 
 const ICON_SIZE = 21
 
@@ -16,7 +16,7 @@ export default function SectionItem(props) {
     return (
         <View style={styles.container}>
             <View style={{flexDirection: 'row'}}>
-                <Image style={props.section === 'authors' ? styles.authorImage : styles.image} source={require('../../../../../../../assets/course.png')} />
+                <Image style={props.section === 'authors' ? styles.authorImage : styles.image} source={require('../../../../../assets/course.png')} />
                 {renderInfo(props.section, props.item)}
             </View>
             {props.section === 'courses' ?
@@ -29,7 +29,6 @@ export default function SectionItem(props) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: 10,

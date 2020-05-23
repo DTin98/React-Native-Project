@@ -1,25 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SectionItems from '../SectionItem/section-item';
+import ListItems from '../../../../../global/ListItems/index';
+import Data from '../../../../../global/Data/index';
 
-export default function SectionAuthors(props) {
-    const authors = [
-        {
-            id: 1,
-            fullname: 'Trương Đại Tín',
-            number_of_courses: 12
-        },
-        {
-            id: 2,
-            fullname: 'Kai Sin',
-            number_of_courses: 25
-        }
-    ];
-
+export default (props) => {
+    const authors = Data.authors;
     return (
         <View style={styles.container}>
-            <SectionItems section='authors' item={authors[0]} />
-            <SectionItems section='authors' item={authors[1]} />
+            <ListItems section='authors' items={authors} />
         </View>
     );
 }
