@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CourseDetail from './src/components/Main/Courses/CourseDetail/course-detail';
-import ListCourses from './src/components/Main/Courses/ListCourses/list-courses';
+import ListCourses from './src/components/Main/Courses/ListCourses/index.js';
 import Download from './src/components/Main/Dowload/index';
 import Home from './src/components/Main/Home/home';
 import Search from './src/components/Main/Search/search';

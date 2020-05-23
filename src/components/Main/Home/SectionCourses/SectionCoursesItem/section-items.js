@@ -3,11 +3,11 @@ import { Image, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import InfoCoursesItem from '../../../../global/ListItems/SectionItem/InfoCouresesItem/info-courses-item';
 
-export default function SectionItems(props) {
+export default function SectionItems({ item, navigation }) {
     return (
-        <TouchableWithoutFeedback style={styles.container} onPress={() => props.navigation.navigate('CourseDetail')}>
+        <TouchableWithoutFeedback style={styles.container} onPress={() => navigation.navigate('CourseDetail', {course: item})}>
             <Image style={styles.image} source={require('../../../../../../assets/course.png')} />
-            <InfoCoursesItem item={props.item} />
+            <InfoCoursesItem item={item} />
         </TouchableWithoutFeedback>
     );
 }

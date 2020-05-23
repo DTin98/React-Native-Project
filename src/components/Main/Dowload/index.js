@@ -1,21 +1,39 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native';
 import Data from '../../global/Data/index';
-import ListCourses from '../Courses/ListCourses/list-courses';
+import ListItems from '../../global/ListItems/index';
+import styles from '../utils/styles/index';
 
-export default (props) => {
+export default () => {
     const downloadedCourses = Data.courses;
     return (
         <View style={styles.container}>
+            <View style={mstyles.header}>
+                <Text style={mstyles.text}>4 courses(4.6GB)</Text>
+                <TouchableNativeFeedback >
+                    <Text style={mstyles.removeButton}>REMOVE ALL</Text>
+                </TouchableNativeFeedback>
+            </View>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <ListCourses section='courses' items={downloadedCourses}/>
+                <ListItems section='courses' items={downloadedCourses} />
             </ScrollView>
         </View>
     );
 }
 
-const styles = StyleSheet.create({
-    container:{
-        margin: 12
+const mstyles = StyleSheet.create({
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+        marginTop: 10
+    },  
+    text: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    removeButton:{
+        color: '#227093',
+        fontWeight: 'bold',
     }
 })
