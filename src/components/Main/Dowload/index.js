@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native';
 import Data from '../../global/Data/index';
@@ -6,11 +7,12 @@ import styles from '../utils/styles/index';
 
 export default () => {
     const downloadedCourses = Data.courses;
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={mstyles.header}>
                 <Text style={mstyles.text}>4 courses(4.6GB)</Text>
-                <TouchableNativeFeedback >
+                <TouchableNativeFeedback onPress={() => navigation.navigate("CourseDetail")}>
                     <Text style={mstyles.removeButton}>REMOVE ALL</Text>
                 </TouchableNativeFeedback>
             </View>
@@ -27,12 +29,12 @@ const mstyles = StyleSheet.create({
         justifyContent: 'space-between',
         marginBottom: 10,
         marginTop: 10
-    },  
+    },
     text: {
         fontSize: 16,
         fontWeight: 'bold'
     },
-    removeButton:{
+    removeButton: {
         color: '#227093',
         fontWeight: 'bold',
     }

@@ -19,6 +19,7 @@ const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Download" component={Download} />
       <Stack.Screen name="ListCourses" component={ListCourses} />
       <Stack.Screen name="CourseDetail" component={CourseDetail} />
     </Stack.Navigator>
@@ -29,6 +30,8 @@ const SearchStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="ListCourses" component={ListCourses} />
+      <Stack.Screen name="CourseDetail" component={CourseDetail} />
     </Stack.Navigator>
   );
 }

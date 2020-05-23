@@ -1,11 +1,14 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import SectionAuthorsItems from './SectionAuthorsItems/section-authors-items';
 import SectionCoursesItems from './SectionCoursesItems/section-courses-items';
 import SectionPathItems from './SectionPathItems/section-path-items';
 
 
 export default ({ sectionName }) => {
+    const navigation = useNavigation();
     //console.log(sectionName);
     return (
         <View style={styles.container}>
@@ -13,7 +16,9 @@ export default ({ sectionName }) => {
                 <Text style={styles.sectionName}>
                     {sectionName[ 0 ].toUpperCase() + sectionName.slice(1)}
                 </Text>
-                <Text style={styles.result}>9 result ></Text>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate("ListCourses")}>
+                    <Text style={styles.result}>9 result ></Text>
+                </TouchableWithoutFeedback>
             </View>
             {sectionName === 'courses' ? <SectionCoursesItems /> : null}
             {sectionName === 'path' ? <SectionPathItems /> : null}

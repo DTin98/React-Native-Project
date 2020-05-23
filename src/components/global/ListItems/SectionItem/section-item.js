@@ -1,29 +1,34 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
-import InfoCoursesItem from './InfoCouresesItem/info-courses-item'
-import InfoPathItem from './InfoPathItem/info-path-item'
-import InfoAuthorItem from './InfoAuthorItem/info-author-item'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import InfoAuthorItem from './InfoAuthorItem/info-author-item';
+import InfoCoursesItem from './InfoCouresesItem/info-courses-item';
+import InfoPathItem from './InfoPathItem/info-path-item';
 
-const ICON_SIZE = 21
+const ICON_SIZE = 21;
 
-export default function SectionItem(props) {
-    const renderInfo = (section, item) => {
-        return section === 'courses' ? <InfoCoursesItem item={item} /> :
-            section === 'path' ? <InfoPathItem item={item} /> : 
+const renderInfo = (section, item) => {
+    return section === 'courses' ? <InfoCoursesItem item={item} /> :
+        section === 'path' ? <InfoPathItem item={item} /> :
             <InfoAuthorItem item={item} />
-    }
+}
+
+export default function SectionItem({ section, item }) {
+    const navigation = useNavigation();
+    
     return (
-        <View style={styles.container}>
-            <View style={{flexDirection: 'row'}}>
-                <Image style={props.section === 'authors' ? styles.authorImage : styles.image} source={require('../../../../../assets/course.png')} />
-                {renderInfo(props.section, props.item)}
+        <TouchableWithoutFeedback style={styles.container} onPress={() => navigation.navigate('CourseDetail', {course: item})}>
+            <View style={{ flexDirection: 'row' }}>
+                <Image style={section === 'authors' ? styles.authorImage : styles.image} source={require('../../../../../assets/course.png')} />
+                {renderInfo(section, item)}
             </View>
-            {props.section === 'courses' ?
+            {section === 'courses' ?
                 <TouchableOpacity style={styles.optionButton}>
                     <View><Icon name="ellipsis-v" color="black" size={ICON_SIZE} /></View>
                 </TouchableOpacity> : null}
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -40,7 +45,7 @@ const styles = StyleSheet.create({
         height: 60,
         width: 80
     },
-    authorImage:{
+    authorImage: {
         marginLeft: 8,
         marginRight: 12,
         height: 60,

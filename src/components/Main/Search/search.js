@@ -15,7 +15,7 @@ const updateStatusBar = () => {
     </View>
 };
 
-export default ({navigation}) => {
+export default ({ navigation }) => {
     navigation.setOptions({
         headerTitle: () => updateStatusBar()
     })
