@@ -7,10 +7,7 @@ const W = Math.round(Dimensions.get("window").width);
 const PathItem = ({ item, style }) => {
   return (
     <TouchableWithoutFeedback style={[styles.container, style]}>
-      <Image
-        source={require("../../../../../assets/course.png")}
-        style={styles.img}
-      />
+      <Image source={{ uri: item.imgSrc }} style={styles.img} />
       <View>
         <Text style={styles.title}>{item.title}</Text>
         <Text>{item.number_of_courses} courses</Text>

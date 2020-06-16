@@ -5,14 +5,17 @@ import {
   ScrollView,
 } from "react-native-gesture-handler";
 import SectionPathItems from "./SectionPathItems";
+import screenKeys from "../../../screen/screenKeys";
+import { useNavigation } from "@react-navigation/native";
 
-const SectionPath = ({ style, sectionName, navigation, items }) => {
+const SectionPath = ({ style, sectionName, items }) => {
+  const navigation = useNavigation();
   return (
     <View style={[styles.container, style]}>
       <View style={styles.header}>
         <Text style={styles.sectionName}>{sectionName}</Text>
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("ListCourses")}
+          onPress={() => navigation.navigate(screenKeys.ListPath)}
         >
           <Text style={styles.seeAllButton}>See all ></Text>
         </TouchableWithoutFeedback>

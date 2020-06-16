@@ -12,10 +12,7 @@ const PathItem = ({ style, item }) => {
       style={[styles.container, style]}
       onPress={() => navigation.navigate("CourseDetail", { item: item })}
     >
-      <Image
-        source={require("../../../../../../assets/course.png")}
-        style={styles.image}
-      />
+      <Image source={{ uri: item.imgSrc }} style={styles.image} />
       <PathInfo
         style={styles.info}
         title={item.title}

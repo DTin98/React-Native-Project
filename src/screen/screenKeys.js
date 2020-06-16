@@ -6,6 +6,7 @@ export default {
   Search: "Search",
   CourseDetail: "CourseDetail",
   ListCourses: "ListCourses",
+  ListPath: "ListPath",
   Profile: "Profile",
   Loading: "Loading",
 };

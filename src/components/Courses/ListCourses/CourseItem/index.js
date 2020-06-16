@@ -14,10 +14,7 @@ const CourseItem = ({ item, style }) => {
         navigation.navigate(screenKeys.CourseDetail, { item });
       }}
     >
-      <Image
-        source={require("../../../../../assets/course.png")}
-        style={styles.img}
-      />
+      <Image source={{ uri: item.imgSrc }} style={styles.img} />
       <InfoItem
         title={item.title}
         authorName={item.authorName}

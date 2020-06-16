@@ -1,5 +1,5 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Text, View } from "react-native";
@@ -7,6 +7,7 @@ import screenKeys from "../../screen/screenKeys";
 import HomeScreen from "../../screen/Home";
 import CourseDetailScreen from "../../screen/CoursesDetail";
 import ListCoursesScreen from "../../screen/ListCourses";
+import ListPathScreen from "../../screen/ListPath";
 import ProfileScreen from "../../screen/Profile";
 import DownloadScreen from "../../screen/Download";
 import HeaderNavigatorCustomize from "../../components/HeaderNavigatorCustomize";
@@ -34,6 +35,11 @@ const HomeStack = () => {
       <Stack.Screen
         name={screenKeys.ListCourses}
         component={ListCoursesScreen}
+        options={{ title: "" }}
+      />
+      <Stack.Screen
+        name={screenKeys.ListPath}
+        component={ListPathScreen}
         options={{ title: "" }}
       />
       <Stack.Screen
@@ -78,6 +84,16 @@ const SearchStack = () => {
         component={CourseDetailScreen}
         options={{ headerShown: false, title: "Course detail" }}
       />
+      <Stack.Screen
+        name={screenKeys.ListCourses}
+        component={ListCoursesScreen}
+        options={{ title: "" }}
+      />
+      <Stack.Screen
+        name={screenKeys.ListPath}
+        component={ListPathScreen}
+        options={{ title: "" }}
+      />
     </Stack.Navigator>
   );
 };
@@ -107,6 +123,12 @@ const Main = () => {
       tabBarOptions={{
         activeTintColor: "#ff6348",
         inactiveTintColor: "gray",
+      }}
+      listeners={{
+        tabPress: (e) => {
+          // e.preventDefault(); // Use this to navigate somewhere else
+          console.log("Search tab bar button pressed");
+        },
       }}
     >
       <Tab.Screen name={screenKeys.Home} component={HomeStack} />

@@ -2,14 +2,19 @@ import React from "react";
 import { StyleSheet, Text, ScrollView, View } from "react-native";
 import { TouchableNativeFeedback } from "react-native-gesture-handler";
 
-const Header = ({ length, capacity, style }) => {
+const Header = ({ length, capacity, style, onRemoveAll }) => {
+  const handleRemoveAll = () => {
+    onRemoveAll();
+  };
   return (
     <View style={[styles.container, style]}>
       <Text>
         {length} courses({capacity}GB)
       </Text>
       <TouchableNativeFeedback>
-        <Text style={styles.removeBtn}>REMOVE ALL</Text>
+        <Text style={styles.removeBtn} onPress={handleRemoveAll}>
+          REMOVE ALL
+        </Text>
       </TouchableNativeFeedback>
     </View>
   );

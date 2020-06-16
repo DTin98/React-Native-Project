@@ -12,7 +12,9 @@ const CoursesItem = ({ style, item }) => {
       onPress={() => navigation.navigate("CourseDetail", { item: item })}
     >
       <Image
-        source={require("../../../../../../assets/course.png")}
+        source={{
+          uri: item.imgSrc,
+        }}
         style={styles.image}
       />
       <CourseInfo

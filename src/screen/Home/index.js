@@ -34,6 +34,11 @@ const Home = () => {
           items={Data.paths}
           style={styles.section}
         />
+        <SectionCourses
+          sectionName="Bookmarks"
+          items={Data.courses}
+          style={styles.section}
+        />
       </ScrollView>
     </View>
   );
