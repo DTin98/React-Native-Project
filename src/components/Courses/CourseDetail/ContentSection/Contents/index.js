@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Data from "../../../../../global/Data";
 import Header from "./Header";
 import Body from "./Body";
-import { ScrollView } from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const Contents = () => {
   const contents = Data.contents;
@@ -20,18 +20,13 @@ const Contents = () => {
       </View>
     ));
   };
-  return (
-    <View style={styles.container}>
-      <ScrollView>{renderItem(contents)}</ScrollView>
-    </View>
-  );
+  return <View style={styles.container}>{renderItem(contents)}</View>;
 };
 
 export default Contents;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 10,
   },
   item: {

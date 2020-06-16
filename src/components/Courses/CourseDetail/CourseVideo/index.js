@@ -10,7 +10,6 @@ const W = Dimensions.get("window").width;
 const CourseVideo = ({ style, height, width }) => {
   const navigation = useNavigation();
   const [shouldPlay, setShouldPlay] = useState(true);
-  const [color, setColor] = useState("#00000070");
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -38,9 +37,9 @@ const CourseVideo = ({ style, height, width }) => {
 
   const renderControl = () => {
     return !shouldPlay ? (
-      <Icon name="play" style={{ fontSize: 60, color: color }} />
+      <Icon name="play" style={{ fontSize: 60, color: "#00000070" }} />
     ) : (
-      <Icon name="pause" style={{ fontSize: 60, color: color }} />
+      <Icon name="pause" style={{ fontSize: 60, color: "#00000070" }} />
     );
   };
   return (
@@ -69,7 +68,7 @@ const CourseVideo = ({ style, height, width }) => {
       </View>
       <View style={styles.closeIcon}>
         <TouchableWithoutFeedback onPress={handleClose}>
-          <Icon name="close" style={{ fontSize: 25, color: color }} />
+          <Icon name="close" style={{ fontSize: 25, color: "#00000070" }} />
         </TouchableWithoutFeedback>
       </View>
     </View>

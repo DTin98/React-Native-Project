@@ -9,7 +9,7 @@ const Header = ({ length, capacity, style }) => {
         {length} courses({capacity}GB)
       </Text>
       <TouchableNativeFeedback>
-        <Text>REMOVE ALL</Text>
+        <Text style={styles.removeBtn}>REMOVE ALL</Text>
       </TouchableNativeFeedback>
     </View>
   );
@@ -21,5 +21,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  removeBtn: {
+    padding: 10,
   },
 });

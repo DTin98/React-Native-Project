@@ -1,4 +1,12 @@
 export default {
+  user: {
+    id: 1,
+    name: "Trương Đại Tín",
+    totalActive: 5,
+    streakDay: 3,
+    mostActiveOfDay: "11:00 PM",
+    mostViewedSubject: "React Native",
+  },
   courses: [
     {
       id: 1,

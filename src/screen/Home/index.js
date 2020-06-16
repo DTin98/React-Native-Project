@@ -7,33 +7,35 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const Home = () => {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <SectionCourses
-        sectionName="Software development"
-        items={Data.courses}
-        style={styles.section}
-      />
-      <SectionCourses
-        sectionName="IT operations"
-        items={Data.courses}
-        style={styles.section}
-      />
-      <SectionCourses
-        sectionName="Data Professional"
-        items={Data.courses}
-        style={styles.section}
-      />
-      <SectionCourses
-        sectionName="Security Professional"
-        items={Data.courses}
-        style={styles.section}
-      />
-      <SectionPath
-        sectionName="My paths"
-        items={Data.paths}
-        style={styles.section}
-      />
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <SectionCourses
+          sectionName="Software development"
+          items={Data.courses}
+          style={styles.section}
+        />
+        <SectionCourses
+          sectionName="IT operations"
+          items={Data.courses}
+          style={styles.section}
+        />
+        <SectionCourses
+          sectionName="Data Professional"
+          items={Data.courses}
+          style={styles.section}
+        />
+        <SectionCourses
+          sectionName="Security Professional"
+          items={Data.courses}
+          style={styles.section}
+        />
+        <SectionPath
+          sectionName="My paths"
+          items={Data.paths}
+          style={styles.section}
+        />
+      </ScrollView>
+    </View>
   );
 };
 
@@ -42,6 +44,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginVertical: 10,
   },
   section: {
     margin: 5,
