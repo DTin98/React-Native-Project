@@ -7,12 +7,19 @@ const ICON_SIZE = 8;
 
 const renderStar = (num_start) => {
   let stars = [];
-  for (let i = 0; i < num_start; i++) {
-    stars.push(
-      <View style={styles.star}>
-        <Icon name="star" color="orange" size={ICON_SIZE} />
-      </View>
-    );
+  for (let i = 0; i < 5; i++) {
+    if (i < Math.floor(num_start))
+      stars.push(
+        <View style={styles.star}>
+          <Icon name="star" color="orange" size={ICON_SIZE} />
+        </View>
+      );
+    else
+      stars.push(
+        <View style={styles.star}>
+          <Icon name="star" color="gray" size={ICON_SIZE} />
+        </View>
+      );
   }
   return stars.map((star) => star);
 };

@@ -20,7 +20,11 @@ const Section = ({ style, sectionName, items }) => {
           <Text style={styles.seeAllButton}>See all ></Text>
         </TouchableWithoutFeedback>
       </View>
-      <SectionCoursesItems items={items} />
+      <SectionCoursesItems
+        items={items}
+        sectionName={sectionName}
+        key={sectionName}
+      />
     </View>
   );
 };

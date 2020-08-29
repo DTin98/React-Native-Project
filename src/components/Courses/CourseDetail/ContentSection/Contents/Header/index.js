@@ -11,7 +11,9 @@ const Header = ({ index, header, time, style }) => {
       </View>
       <View>
         <Text style={styles.header}>{header}</Text>
-        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.time}>
+          {time < 1 ? parseInt(time * 60) + " Phút" : time + " Giờ"}
+        </Text>
       </View>
     </View>
   );

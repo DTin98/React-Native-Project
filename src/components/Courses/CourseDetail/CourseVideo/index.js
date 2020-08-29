@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const W = Dimensions.get("window").width;
 
-const CourseVideo = ({ style, height, width }) => {
+const CourseVideo = ({ style, height, width, uri }) => {
   const navigation = useNavigation();
   const [shouldPlay, setShouldPlay] = useState(true);
   const videoRef = useRef(null);
@@ -44,15 +44,17 @@ const CourseVideo = ({ style, height, width }) => {
   };
   return (
     <View style={[styles.container, style]}>
+      {console.log("CourseVideo -> uri", uri)}
+
       <Video
         source={{
-          uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+          uri: uri,
         }}
         rate={1.0}
         volume={1.0}
         isMuted={false}
         resizeMode="cover"
-        shouldPlay
+        // shouldPlay
         resizeMode="stretch"
         style={{ width: "100%", height: "100%" }}
         ref={videoRef}

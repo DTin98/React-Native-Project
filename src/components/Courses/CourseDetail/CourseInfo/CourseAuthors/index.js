@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Dimensions } from "react-native";
+import { InstructorInfoContext } from "../../../../../provider/instructor-info-provider";
+import { AuthenticationContext } from "../../../../../provider/authentication-provider";
 
 const W = Dimensions.get("window").width;
 
-const CourseAuthors = ({ name }) => {
+const CourseAuthors = ({ name, id = null }) => {
+  const instructorInfoContext = useContext(InstructorInfoContext);
+  const authContext = useContext(AuthenticationContext);
+  useEffect(() => {
+    instructorInfoContext.getInstructorDetail(authContext.state.token, id);
+  }, []);
   return (
     <View style={styles.container}>
       <Image
         style={styles.avatar}
-        source={require("../../../../../../assets/donal-trump.jpg")}
+        source={
+          !id
+            ? require("../../../../../../assets/donal-trump.jpg")
+            : {
+                uri: instructorInfoContext.state.avatar,
+              }
+        }
       />
       <Text style={styles.name}>{name}</Text>
     </View>

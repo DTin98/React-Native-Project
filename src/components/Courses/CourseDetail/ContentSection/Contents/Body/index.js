@@ -1,7 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import moment from "moment";
+
+const W = Dimensions.get("window").width;
 
 const renderItems = (items) => {
   return items.map((item) => (
@@ -9,9 +12,11 @@ const renderItems = (items) => {
       <View style={styles.item}>
         <View style={styles.titleIndex}>
           <Icon name="checkcircleo" style={{ marginRight: 5 }} />
-          <Text style={{ fontSize: 14 }}>{item.index}</Text>
+          <Text style={{ fontSize: 12, width: W - 100 }}>{item.name}</Text>
         </View>
-        <Text>{item.time}</Text>
+        <Text style={{ fontSize: 10 }}>
+          {moment(item.hours, "HHmmss").format("HH:mm:ss")}
+        </Text>
       </View>
     </TouchableWithoutFeedback>
   ));

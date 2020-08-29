@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import axios from "axios";
 import {
   StyleSheet,
   View,
@@ -9,70 +10,58 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import screenKeys from "../../screen/screenKeys";
+import screenKeys from "../screenKeys";
 import FormTextInput from "../../components/FormTextInput";
 import { AuthenticationContext } from "../../provider/authentication-provider";
 import { ScreenStack } from "react-native-screens";
 
 const H = Dimensions.get("screen").height;
 
-const Login = () => {
+const ForgotPass = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = useState("truongdaitin98@gmail.com");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
-  const authContext = useContext(AuthenticationContext);
+  const [isValidEmail, setIsValidEmail] = useState(true);
 
   const handleEmailChange = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(email)) {
+      setIsValidEmail(false);
+      setError("Email không hợp lệ");
+    } else {
+      setIsValidEmail(true);
+      setError(null);
+    }
     setEmail(email);
   };
 
-  const handlePasswordChange = (password) => {
-    setPassword(password);
+  const handleSendEmailPress = async () => {
+    await axios
+      .post("https://api.itedu.me/user/forget-pass/send-email", {
+        email: email,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          // do something
+          console.log("handleRegisterPress -> response", response);
+        }
+      })
+      .catch((error) => {
+        setError(error.response.data.message);
+      });
   };
-
-  const handleLoginPress = async () => {
-    const isLoginSucceeded = await authContext.login(email, password);
-    if (isLoginSucceeded) navigation.replace(screenKeys.Loading);
-    else {
-      setError("Tên đăng nhập hoặc mật khẩu không đúng");
-    }
-  };
-
-  const handleRegisterPress = async () => {
-    navigation.navigate(screenKeys.Register);
-  };
-
-  const handleForgotPassPress = async () => {
-    navigation.navigate(screenKeys.ForgotPass);
-  };
-
   return (
     <View style={styles.container}>
-      <Image source={require("../../../assets/logo.png")} style={styles.logo} />
       <View style={styles.form}>
         <FormTextInput
           value={email}
           onChangeText={handleEmailChange}
           placeholder="Email"
-        />
-        <FormTextInput
-          secureTextEntry={true}
-          value={password}
-          onChangeText={handlePasswordChange}
-          placeholder="Password"
+          isValid={isValidEmail ? true : false}
         />
         {error ? <Text style={styles.error}>{error}</Text> : null}
-        <TouchableOpacity onPress={handleLoginPress}>
-          <Text style={styles.loginBtn}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleRegisterPress}>
-          <Text style={styles.registerBtn}>
-            {">"} Register Free {"<"}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleForgotPassPress}>
-          <Text style={styles.forgotPass}>Quên mật khẩu?</Text>
+        <TouchableOpacity onPress={handleSendEmailPress}>
+          <Text style={styles.sendBtn}>Send Email</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -102,7 +91,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     padding: 10,
   },
-  loginBtn: {
+  sendBtn: {
     color: "white",
     fontWeight: "bold",
     backgroundColor: "#3498db",
@@ -125,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default ForgotPass;

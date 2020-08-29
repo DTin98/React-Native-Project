@@ -7,7 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const Tab = createMaterialTopTabNavigator();
 
-const ContentSection = (handleFocus, style) => {
+const ContentSection = ({ handleFocus, style }) => {
   return (
     <View style={styles.container}>
       <Tab.Navigator

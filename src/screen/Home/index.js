@@ -1,42 +1,45 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Data from "../../global/Data";
 import SectionCourses from "../../components/Courses/SectionCourses";
-import SectionPath from "../../components/Path/SectionPath";
 import { ScrollView } from "react-native-gesture-handler";
+import { AuthenticationContext } from "../../provider/authentication-provider";
+import {
+  CoursesProvider,
+  CoursesContext,
+} from "../../provider/courses-provider";
 
 const Home = () => {
+  const authContext = useContext(AuthenticationContext);
+  const coursesContext = useContext(CoursesContext);
+
+  useEffect(() => {
+    coursesContext.getMyCourses(authContext.state.token);
+    coursesContext.getTopNew();
+    coursesContext.getTopRate();
+    coursesContext.getTopSell();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <SectionCourses
-          sectionName="Software development"
-          items={Data.courses}
+          sectionName="Khóa học của tôi"
+          items={coursesContext.state.my_courses}
           style={styles.section}
         />
         <SectionCourses
-          sectionName="IT operations"
-          items={Data.courses}
+          sectionName="Khóa học mới"
+          items={coursesContext.state.top_new_courses}
           style={styles.section}
         />
         <SectionCourses
-          sectionName="Data Professional"
-          items={Data.courses}
+          sectionName="Khóa học nổi bật"
+          items={coursesContext.state.top_rate_courses}
           style={styles.section}
         />
         <SectionCourses
-          sectionName="Security Professional"
-          items={Data.courses}
-          style={styles.section}
-        />
-        <SectionPath
-          sectionName="My paths"
-          items={Data.paths}
-          style={styles.section}
-        />
-        <SectionCourses
-          sectionName="Bookmarks"
-          items={Data.courses}
+          sectionName="Khóa học gợi ý cho bạn"
+          items={coursesContext.state.top_sell_courses}
           style={styles.section}
         />
       </ScrollView>

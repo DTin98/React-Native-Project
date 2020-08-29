@@ -5,7 +5,7 @@ import Rating from "./Rating";
 const CourseInfo = ({
   title,
   authorName,
-  level,
+  price,
   release,
   duration,
   star,
@@ -16,9 +16,12 @@ const CourseInfo = ({
     <View style={[styles.container, style]}>
       <Text style={styles.title}>{title}</Text>
       <View>
-        <Text style={styles.text}>{authorName}</Text>
+        <Text style={[styles.text, { fontSize: 10 }]}>{authorName}</Text>
         <Text style={styles.text}>
-          {level} . {release} . {duration}
+          <Text style={{ fontWeight: "bold", fontSize: 15 }}>
+            {price ? price + " VND" : "FREE"}
+          </Text>{" "}
+          . {release} . {duration} tiếng
         </Text>
         <Rating star={star} vote={vote} />
       </View>
@@ -38,6 +41,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#636e72",
-    fontSize: 9,
+    fontSize: 11,
   },
 });

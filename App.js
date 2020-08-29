@@ -7,6 +7,9 @@ import screenKeys from "./src/screen/screenKeys";
 import MainScreen from "./src/screen/Main";
 import Login from "./src/screen/Login";
 import LoadingScreen from "./src/screen/Loading";
+import RegisterScreen from "./src/screen/Register";
+import ForgotPassScreen from "./src/screen/ForgotPass";
+import { AuthenticationProvider } from "./src/provider/authentication-provider";
 
 const Stack = createStackNavigator();
 
@@ -28,15 +31,27 @@ const LoginStack = () => {
         component={LoadingScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name={screenKeys.Register}
+        component={RegisterScreen}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={screenKeys.ForgotPass}
+        component={ForgotPassScreen}
+        options={{ headerShown: true }}
+      />
     </Stack.Navigator>
   );
 };
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <LoginStack />
-    </NavigationContainer>
+    <AuthenticationProvider>
+      <NavigationContainer>
+        <LoginStack />
+      </NavigationContainer>
+    </AuthenticationProvider>
   );
 };
 

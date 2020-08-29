@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import screenKeys from "../screenKeys";
+import { AuthenticationContext } from "../../provider/authentication-provider";
 
 const TotalActiveDays = ({ style, total, streakDay }) => {
+  const authContext = useContext(AuthenticationContext);
   return (
     <View style={style}>
       <Text style={{ color: "gray" }}>TOTAL ACTIVE DAYS</Text>
@@ -38,6 +40,7 @@ const MostViewedSubject = ({ style, mostViewedSubject }) => {
 
 const Profile = ({ route }) => {
   const navigation = useNavigation();
+  const authContext = useContext(AuthenticationContext);
   const { user } = route.params;
   return (
     <View style={styles.container}>
@@ -63,7 +66,10 @@ const Profile = ({ route }) => {
       />
       <Button
         title="Sign out"
-        onPress={() => navigation.replace(screenKeys.Login)}
+        onPress={() => {
+          authContext.logout();
+          navigation.replace(screenKeys.Login);
+        }}
       />
     </View>
   );

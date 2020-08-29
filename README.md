@@ -7,6 +7,6 @@ Hướng dẫn:
 
 - npm i && npm start
   hoặc
-- yarn && yarn sta
+- yarn && yarn start
 
 Link Video: <https://www.youtube.com/watch?v=PYh_YUHbdv0>

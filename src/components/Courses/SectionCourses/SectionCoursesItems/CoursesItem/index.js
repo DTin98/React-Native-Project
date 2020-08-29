@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import CourseInfo from "./CourseInfo";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import moment from "moment";
 
 const CoursesItem = ({ style, item }) => {
   const navigation = useNavigation();
@@ -13,19 +14,19 @@ const CoursesItem = ({ style, item }) => {
     >
       <Image
         source={{
-          uri: item.imgSrc,
+          uri: item.imageUrl,
         }}
         style={styles.image}
       />
       <CourseInfo
         style={styles.info}
         title={item.title}
-        authorName={item.authorName}
-        level={item.level}
-        release={item.release}
-        duration={item.duration}
-        star={item.star}
-        vote={item.vote}
+        authorName={item["instructor.user.name"]}
+        price={item.price}
+        release={moment(item.createdAt).format("DD/MM/YYYY")}
+        duration={item.totalHours}
+        star={item.contentPoint}
+        vote={item.ratedNumber}
       />
     </TouchableWithoutFeedback>
   );
@@ -36,8 +37,8 @@ export default CoursesItem;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#bdc3c7",
-    width: 160,
-    height: 160,
+    width: 200,
+    height: 200,
     overflow: "hidden",
     borderRadius: 15,
   },
