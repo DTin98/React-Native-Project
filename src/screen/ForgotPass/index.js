@@ -14,6 +14,7 @@ import screenKeys from "../screenKeys";
 import FormTextInput from "../../components/FormTextInput";
 import { AuthenticationContext } from "../../provider/authentication-provider";
 import { ScreenStack } from "react-native-screens";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const H = Dimensions.get("screen").height;
 
@@ -21,6 +22,7 @@ const ForgotPass = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
+  const [isSucceeded, SetSucceeded] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
 
   const handleEmailChange = (email) => {
@@ -43,15 +45,16 @@ const ForgotPass = () => {
       .then((response) => {
         if (response.status === 200) {
           // do something
-          console.log("handleRegisterPress -> response", response);
+          SetSucceeded(true);
         }
       })
       .catch((error) => {
         setError(error.response.data.message);
       });
   };
-  return (
-    <View style={styles.container}>
+
+  const renderForm = () => {
+    return !isSucceeded ? (
       <View style={styles.form}>
         <FormTextInput
           value={email}
@@ -64,8 +67,17 @@ const ForgotPass = () => {
           <Text style={styles.sendBtn}>Send Email</Text>
         </TouchableOpacity>
       </View>
-    </View>
-  );
+    ) : (
+      <View style={{ flex: 1, justifyContent: "center", width: 300 }}>
+        <Icon name="done" style={{ fontSize: 60, color: "green" }}></Icon>
+        <Text>
+          Vui lòng kiểm tra email của bạn để tiếp tục khôi phục mật khẩủ
+        </Text>
+      </View>
+    );
+  };
+
+  return <View style={styles.container}>{renderForm()}</View>;
 };
 
 const styles = StyleSheet.create({

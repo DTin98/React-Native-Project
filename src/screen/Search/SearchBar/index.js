@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
-const SearchBar = ({ onSubmitEditing, onFocus }) => {
+const SearchBar = ({ onSubmitEditing, onFocus, onChangeText }) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -11,6 +11,7 @@ const SearchBar = ({ onSubmitEditing, onFocus }) => {
         style={styles.input}
         onSubmitEditing={onSubmitEditing}
         onFocus={onFocus}
+        onChangeText={onChangeText}
       />
     </View>
   );

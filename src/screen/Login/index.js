@@ -25,10 +25,12 @@ const Login = () => {
 
   const handleEmailChange = (email) => {
     setEmail(email);
+    setError(null);
   };
 
   const handlePasswordChange = (password) => {
     setPassword(password);
+    setError(null);
   };
 
   const handleLoginPress = async () => {

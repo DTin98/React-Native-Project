@@ -13,6 +13,7 @@ import screenKeys from "../../screen/screenKeys";
 import FormTextInput from "../../components/FormTextInput";
 import { AuthenticationContext } from "../../provider/authentication-provider";
 import { set } from "react-native-reanimated";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const H = Dimensions.get("screen").height;
 
@@ -29,6 +30,7 @@ const Register = () => {
   const [rePassword, setRePassword] = useState("");
   const [isValidRePassword, setIsValidRePassword] = useState(true);
   const [error, setError] = useState(null);
+  const [isSucceeded, setSucceeded] = useState(false);
   const authContext = useContext(AuthenticationContext);
 
   const handleUsernameChange = (username) => {
@@ -70,7 +72,7 @@ const Register = () => {
       setIsValidEmail(false);
       isValidated = false;
     }
-    if (phone === "") {
+    if (!/(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(phone)) {
       setIsValidPhone(false);
       isValidated = false;
     }
@@ -103,9 +105,8 @@ const Register = () => {
           password: password,
         })
         .then((response) => {
-          console.log("handleRegisterPress -> response", response);
           if (response.status === 200) {
-            // do something
+            setSucceeded(true);
           }
         })
         .catch((error) => {
@@ -113,7 +114,7 @@ const Register = () => {
         });
   };
 
-  return (
+  return !isSucceeded ? (
     <View style={styles.container}>
       <View style={styles.form}>
         <FormTextInput
@@ -131,6 +132,7 @@ const Register = () => {
         <FormTextInput
           value={phone}
           onChangeText={handlePhoneChange}
+          keyboardType="numeric"
           isValid={isValidPhone ? true : false}
           placeholder="Phone"
         />
@@ -151,6 +153,18 @@ const Register = () => {
         {error ? <Text style={styles.error}>{error}</Text> : null}
         <Button title="Register Now" onPress={handleRegisterPress} />
       </View>
+    </View>
+  ) : (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        width: 300,
+        alignItems: "center",
+      }}
+    >
+      <Icon name="done" style={{ fontSize: 60, color: "green" }}></Icon>
+      <Text>Vui lòng kiểm tra email của bạn kích hoạt tài khoản</Text>
     </View>
   );
 };

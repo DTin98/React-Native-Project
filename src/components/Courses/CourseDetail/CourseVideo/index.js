@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Video } from "expo-av";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/AntDesign";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
@@ -37,15 +37,13 @@ const CourseVideo = ({ style, height, width, uri }) => {
 
   const renderControl = () => {
     return !shouldPlay ? (
-      <Icon name="play" style={{ fontSize: 60, color: "#00000070" }} />
+      <Icon name="play" style={{ fontSize: 60, color: "#fff" }} />
     ) : (
-      <Icon name="pause" style={{ fontSize: 60, color: "#00000070" }} />
+      <Icon name="pausecircle" style={{ fontSize: 60, color: "#fff" }} />
     );
   };
   return (
     <View style={[styles.container, style]}>
-      {console.log("CourseVideo -> uri", uri)}
-
       <Video
         source={{
           uri: uri,
@@ -54,7 +52,7 @@ const CourseVideo = ({ style, height, width, uri }) => {
         volume={1.0}
         isMuted={false}
         resizeMode="cover"
-        // shouldPlay
+        shouldPlay
         resizeMode="stretch"
         style={{ width: "100%", height: "100%" }}
         ref={videoRef}

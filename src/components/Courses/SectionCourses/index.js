@@ -8,14 +8,18 @@ import SectionCoursesItems from "./SectionCoursesItems";
 import screenKeys from "../../../screen/screenKeys";
 import { useNavigation } from "@react-navigation/native";
 
-const Section = ({ style, sectionName, items }) => {
+const Section = ({ style, sectionName, sectionCode, items }) => {
   const navigation = useNavigation();
   return (
     <View style={[styles.container, style]}>
       <View style={styles.header}>
         <Text style={styles.sectionName}>{sectionName}</Text>
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate(screenKeys.ListCourses)}
+          onPress={() =>
+            navigation.navigate(screenKeys.ListCourses, {
+              sectionCode: sectionCode,
+            })
+          }
         >
           <Text style={styles.seeAllButton}>See all ></Text>
         </TouchableWithoutFeedback>
@@ -23,6 +27,7 @@ const Section = ({ style, sectionName, items }) => {
       <SectionCoursesItems
         items={items}
         sectionName={sectionName}
+        sectionCode={sectionCode}
         key={sectionName}
       />
     </View>

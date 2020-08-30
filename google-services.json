@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "286563245309",
+    "firebase_url": "https://itedu-a0d24.firebaseio.com",
+    "project_id": "itedu-a0d24",
+    "storage_bucket": "itedu-a0d24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286563245309:android:0869f5e865c7c4327b7294",
+        "android_client_info": {
+          "package_name": "com.itedu.name"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286563245309-g89pmsaaha09n6k4sg4tg9khv7e63dlk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxH78Dae2S7U_L1eLV-HUIYnb4ibP9TaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286563245309-g89pmsaaha09n6k4sg4tg9khv7e63dlk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

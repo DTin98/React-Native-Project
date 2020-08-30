@@ -8,9 +8,11 @@ import CoursesItem from "./CoursesItem";
 
 const renderItems = (items) => {
   return items
-    ? items.map((item, index) => (
-        <CoursesItem item={item} style={styles.CoursesItem} key={item.id} />
-      ))
+    ? items.map((item, index) =>
+        index < 5 ? (
+          <CoursesItem item={item} style={styles.CoursesItem} key={item.id} />
+        ) : null
+      )
     : null;
 };
 

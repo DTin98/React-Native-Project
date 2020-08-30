@@ -24,21 +24,25 @@ const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <SectionCourses
           sectionName="Khóa học của tôi"
+          sectionCode="MY_COURSES"
           items={coursesContext.state.my_courses}
           style={styles.section}
         />
         <SectionCourses
           sectionName="Khóa học mới"
+          sectionCode="TOP_NEW_COURSES"
           items={coursesContext.state.top_new_courses}
           style={styles.section}
         />
         <SectionCourses
           sectionName="Khóa học nổi bật"
+          sectionCode="TOP_RATE_COURSES"
           items={coursesContext.state.top_rate_courses}
           style={styles.section}
         />
         <SectionCourses
           sectionName="Khóa học gợi ý cho bạn"
+          sectionCode="TOP_SELL_COURSES"
           items={coursesContext.state.top_sell_courses}
           style={styles.section}
         />

@@ -17,6 +17,7 @@ import SearchScreen from "../../screen/Search";
 import { CoursesProvider } from "../../provider/courses-provider";
 import { CourseDetailProvider } from "../../provider/courses-detail-provider";
 import { InstructorInfoProvider } from "../../provider/instructor-info-provider";
+import { SearchCoursesProvider } from "../../provider/search-courses-provider";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -160,25 +161,30 @@ const Main = () => {
     <CoursesProvider>
       <CourseDetailProvider>
         <InstructorInfoProvider>
-          <Tab.Navigator
-            screenOptions={screenOptions}
-            unmountInactiveRoutes={true}
-            tabBarOptions={{
-              activeTintColor: "#ff6348",
-              inactiveTintColor: "gray",
-            }}
-            listeners={{
-              tabPress: (e) => {
-                // e.preventDefault(); // Use this to navigate somewhere else
-                console.log("Search tab bar button pressed");
-              },
-            }}
-          >
-            <Tab.Screen name={screenKeys.Home} component={HomeStack} />
-            <Tab.Screen name={screenKeys.Download} component={DownloadStack} />
-            <Tab.Screen name={screenKeys.Browse} component={BrowseStack} />
-            <Tab.Screen name={screenKeys.Search} component={SearchStack} />
-          </Tab.Navigator>
+          <SearchCoursesProvider>
+            <Tab.Navigator
+              screenOptions={screenOptions}
+              unmountInactiveRoutes={true}
+              tabBarOptions={{
+                activeTintColor: "#ff6348",
+                inactiveTintColor: "gray",
+              }}
+              listeners={{
+                tabPress: (e) => {
+                  // e.preventDefault(); // Use this to navigate somewhere else
+                  console.log("Search tab bar button pressed");
+                },
+              }}
+            >
+              <Tab.Screen name={screenKeys.Home} component={HomeStack} />
+              <Tab.Screen
+                name={screenKeys.Download}
+                component={DownloadStack}
+              />
+              <Tab.Screen name={screenKeys.Browse} component={BrowseStack} />
+              <Tab.Screen name={screenKeys.Search} component={SearchStack} />
+            </Tab.Navigator>
+          </SearchCoursesProvider>
         </InstructorInfoProvider>
       </CourseDetailProvider>
     </CoursesProvider>

@@ -4,6 +4,7 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import InfoItem from "../../SectionCourses/SectionCoursesItems/CoursesItem/CourseInfo";
 import { useNavigation } from "@react-navigation/native";
 import screenKeys from "../../../../screen/screenKeys";
+import moment from "moment";
 
 const CourseItem = ({ item, style }) => {
   const navigation = useNavigation();
@@ -14,15 +15,15 @@ const CourseItem = ({ item, style }) => {
         navigation.navigate(screenKeys.CourseDetail, { item });
       }}
     >
-      <Image source={{ uri: item.imgSrc }} style={styles.img} />
+      <Image source={{ uri: item.imageUrl }} style={styles.img} />
       <InfoItem
         title={item.title}
-        authorName={item.authorName}
-        level={item.level}
-        release={item.release}
-        duration={item.duration}
-        star={item.star}
-        vote={item.vote}
+        authorName={item["instructor.user.name"]}
+        price={item.price}
+        release={moment(item.createdAt).format("DD/MM/YYYY")}
+        duration={item.totalHours}
+        star={item.contentPoint}
+        vote={item.ratedNumber}
       />
     </TouchableWithoutFeedback>
   );

@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import SearchBar from "./SearchBar";
 import All from "./Filters/All";
@@ -7,22 +7,35 @@ import Courses from "./Filters/Courses";
 import Path from "./Filters/Path";
 import { StackActions } from "react-navigation";
 import screenKeys from "../screenKeys";
+import { SearchCoursesContext } from "../../provider/search-courses-provider";
+import { AuthenticationContext } from "../../provider/authentication-provider";
 
 const Tab = createMaterialTopTabNavigator();
 
-const updateStatusBar = (handleSubmit, handleFocus) => {
+const updateStatusBar = (handleSubmit, handleFocus, handleChangeText) => {
   return (
     <View>
-      <SearchBar onSubmitEditing={handleSubmit} onFocus={handleFocus} />
+      <SearchBar
+        onSubmitEditing={handleSubmit}
+        onFocus={handleFocus}
+        onChangeText={handleChangeText}
+      />
     </View>
   );
 };
 
 export default ({ navigation }) => {
   const [submit, setSubmit] = useState(false);
+  const [keyword, setKeyword] = useState(null);
+  const searchCoursesContext = useContext(SearchCoursesContext);
+  const authContext = useContext(AuthenticationContext);
 
   const handleSubmit = () => {
     setSubmit(true);
+  };
+
+  const handleChangeText = (keyword) => {
+    setKeyword(keyword);
   };
 
   const handleFocus = () => {
@@ -30,7 +43,8 @@ export default ({ navigation }) => {
   };
 
   navigation.setOptions({
-    headerTitle: () => updateStatusBar(handleSubmit, handleFocus),
+    headerTitle: () =>
+      updateStatusBar(handleSubmit, handleFocus, handleChangeText),
   });
 
   return submit ? (
